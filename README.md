@@ -1,6 +1,6 @@
-LOG: 2011-03-17 13:39:43 Thursday  Week 11 <nanjiang@illergard>
-  
-update PDB, and save the PDB locally in the same data structure as the RCSB archive 
+#UpdatePDB
+## Description:
+Save the PDB locally in the same data structure as the RCSB archive 
 under $DATADIR
 
    pdb/data/structures/divided/pdb             : the main PDB archive, experimental structures
@@ -14,4 +14,22 @@ and the decompressed data are stored at
    pdb/data/structures/models/current/pdb_dcp  : for theoretical structures, main archive
    pdb/data/structures/models/obsolete/pdb_dcp : for theoretical structures, obsolete archive
 
-Usage: updatepdb.sh
+## Contact:
+Nanjiang Shu
+Email: nanjiang.shu@scilifelab.se
+
+## Usage:
+First set the DATADIR, e.g., if you want to store your local PDB at /data, then
+
+    `export DATADIR=/data`
+
+After that, just run
+    `bash updatepdb.sh`
+
+It is recommended to set up a cron job so that the database will keep updated.
+For example:
+
+run updatepdb.sh every Sunday at 1am
+    `0 1 * * 0 (export DATADIR=/data; /usr/local/share/updatepdb/updatepdb.sh) >> /var/log/updatepdb.log 2>&1`
+
+
